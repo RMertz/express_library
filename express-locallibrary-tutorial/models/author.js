@@ -40,5 +40,13 @@ AuthorSchema
 				return this.date_of_death ?
 				moment(this.date_of_death).format('MMMM Do, YYYY') : '';
 });
+
+// Virtual for lifespan_formatted
+AuthorSchema
+.virtual('lifespan')
+.get(function () {
+				return this.date_of_birth_formatted + ' - ' + this.date_of_death_formatted;
+});
+
 //Export model
 module.exports = mongoose.model('Author', AuthorSchema);
